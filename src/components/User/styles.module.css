@@ -1,0 +1,44 @@
+.modal{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    right: 0;
+    top: 0;
+    row-gap: 24px;
+    height: 100vh;
+    background-color: var(--color-black-20);
+    padding: 24px;
+    width: 320px;
+    z-index: 3;
+}
+.title{
+    text-align: center;
+    font-size: 15px;
+}
+.input:not(:last-of-type){
+    margin-bottom: 16px;
+}
+.input{
+    width: 100%;
+    background-color: var(--color-black-10);
+    border-radius: 8px;
+    padding: 12px 24px;
+    border: none;
+    outline: none;
+    color: white;
+}
+.button{
+    width: 100%;
+}
+.overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    background: rgba(0.9,0.7,0.5,0.8);
+}
+.login{
+    text-align: center;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+}

@@ -1,0 +1,32 @@
+.title{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.products{
+    background-color: var(--color-black-20);
+    padding: 22px;
+    border-radius: 6px;
+    margin-block: 15px;
+}
+.list{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+}
+.card{
+    position: relative;
+    border-radius: 8px;
+    height: 275px;
+}
+.image{
+    height: 230px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.cardTitle{
+    text-align: center;
+    margin-top: 20px;
+}

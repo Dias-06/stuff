@@ -1,0 +1,6 @@
+.hero{
+    display: grid;
+    grid-template-columns: 23% 1fr;
+    column-gap: 20px;
+    min-height: 421px;
+}
