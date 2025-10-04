@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { filterByTitle } from '../../features/products'
+import { filterByPriceRange, filterByTitle } from '../../features/products'
 const ProductsList = ({title, amount, products = []}) => {
     const dispatch = useDispatch();
     const list = products.filter((_, i) => i < amount);
     const location = useLocation();
     const [searchValue, setSearchValue] = useState('');
+    const [priceRange, setPriceRange] = useState({min: 0, max: 500})
     const {isLoading} = useSelector((state) => state.products);
     useEffect(() => {
         dispatch(filterByTitle(searchValue));
     }, [searchValue])
+    useEffect(() => {
+        dispatch(filterByPriceRange(searchValue.min, searchValue.max))
+    })
   return (
     <section className={styles.products}>
 
@@ -22,8 +26,8 @@ const ProductsList = ({title, amount, products = []}) => {
             location.pathname.includes('category') && (
                 <div className={styles.filter}>
                     <input onChange={(e) => setSearchValue(e.target.value)} placeholder='search...' type="text" className={styles.search} />
-                    <input placeholder='0$' type='number' className={styles.filterPrice} />
-                    <input placeholder='999$' type='number' className={styles.filterPrice}/>
+                    <input onChange={(e) => setPriceRange({...prev, min: e.target.value})} placeholder='0$' type='number' className={styles.filterPrice} />
+                    <input onChange={(e) => setPriceRange({...prev, max: e.target.value})} placeholder='999$' type='number' className={styles.filterPrice}/>
                 </div>  
             )
         }

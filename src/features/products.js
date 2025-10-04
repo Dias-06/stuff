@@ -19,6 +19,15 @@ export const filterByTitle = createAsyncThunk('products/filterByTitle', async (t
     }
 })
 
+export const filterByPriceRange = createAsyncThunk('products/filterByPriceRange', async (max,min) => {
+    try{
+        const response = await fetch(`https://api.escuelajs.co/api/v1/products/?price_min=${min}&price_max=${max}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+})
 const productsSlice = createSlice({
     name: 'products',
     initialState: {
@@ -36,7 +45,10 @@ const productsSlice = createSlice({
         },
         filterByCategory: (state, {payload}) => {
             state.filtered= state.products.filter(item => Number(item.category.id) == payload)
-        }
+        },
+        filterByPrice: (state, {payload}) => {
+            state.filtered= state.products.filter(item => Number(item.category.id) == payload)
+        },
     },
     extraReducers: (builderer) =>{
         builderer.addCase(getProducts.pending, (s) => {
@@ -56,7 +68,10 @@ const productsSlice = createSlice({
         builderer.addCase(filterByTitle.fulfilled, (state, action) => {
             state.filtered = action.payload;
             state.isLoading = false;
-        })
+        });
+        builderer.addCase(filterByPriceRange.fulfilled, (state, action) => {
+            state.filtered = action.payload;
+        });
     }
 }
 )
