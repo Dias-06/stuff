@@ -31,7 +31,11 @@ const CategoryPage = () => {
           <Sidebar />
           <Poster />
         </section>
-        <ProductsList title={singleCategory && singleCategory.name} products={filtered} amount={filtered.length} />
+        <ProductsList
+          title={singleCategory && singleCategory.name}
+          products={filtered || []}
+          amount={filtered ? filtered.length : 0}
+        />
     </Container>
   )
 }
