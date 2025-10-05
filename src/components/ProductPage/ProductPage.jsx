@@ -24,7 +24,6 @@ const ProductPage = () => {
     },[id, dispatch, singleProduct])
     
     const addItemToCart = () =>{
-        console.log('added')
         dispatch(addToCart(singleProduct))
     }
     

@@ -38,13 +38,14 @@ const userSlice = createSlice({
                 newCart = newCart.map(item => {
                     return item.id == payload.id ? {...item, quntity: payload.quntity || item.quntity + 1} : item
                 })
-                console.log(newCart)
             }
             else{
                 newCart.push({...payload, quntity: 1})
-                console.log(newCart)
             }
             state.cart = newCart;
+        },
+        delFromCart: (state, action) => {
+            state.cart = state.cart.filter(item => item.id != action.payload.id);
         },
         toggleForm: (state, action) => {
             state.showForm = action.payload
@@ -63,4 +64,4 @@ const userSlice = createSlice({
     }
 })
 export default userSlice.reducer
-export const {addToCart, toggleForm, toggleFormType} = userSlice.actions
+export const {addToCart, toggleForm, toggleFormType, delFromCart} = userSlice.actions

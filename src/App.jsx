@@ -9,6 +9,7 @@ import { getProducts } from "./features/products"
 import ProductPage from "./components/ProductPage/ProductPage"
 import UserForm from "./components/UserForm/UserForm"
 import CategoryPage from "./pages/CategoryPage/CategoryPage"
+import CartPage from "./pages/CartPage/CartPage"
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element = {<Home />}/>
         <Route path="/products/:id" element = {<ProductPage />}/>
         <Route path="/category/:id" element = {<CategoryPage />}/>
+        <Route path="/cart" element = {<CartPage />}/>
       </Routes>
       <Footer />
     </>

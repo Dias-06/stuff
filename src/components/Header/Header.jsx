@@ -72,7 +72,7 @@ const Header = () =>{
               <NavLink to={'/saved'}>
                 <img src={like} alt="" />
               </NavLink>
-              <NavLink to={'/basket'}>
+              <NavLink to={'/cart'}>
                 <img src={shop} alt="" />
               </NavLink>
               
