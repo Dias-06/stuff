@@ -6,35 +6,29 @@ import Container from '../../components/Container/Container';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Poster from '../../components/Poster/Poster';
 import { useParams } from 'react-router-dom';
-import ProductsList from '../../components/ProductsList/ProductsList';
+
+import FilterProductList from '../../components/FilterProductList/FilterProductList';
 const CategoryPage = () => {
-  const dispatch = useDispatch();
   const {id} = useParams();
-  const {products,filtered} = useSelector((state) => state.products);
+  const dispatch = useDispatch()
+  const {filtered, products} = useSelector((state) => state.products);
   const {list} = useSelector((state) => state.categories);
   const singleCategory = list.find(item => item.id == Number(id));
-  // const filtered = products.filter(item => item.category.id == id);
   useEffect(() => {
-    if (products.length === 0) {
-      dispatch(getProducts());
-    }
-  }, [products.length, dispatch]);
-
-  useEffect(() => {
-    if (products.length > 0) {
-      dispatch(filterByCategory(Number(id)));
-    }
-  }, [id, products, dispatch]);
+    if (products.length == 0 ) return;
+    dispatch(filterByCategory(Number(id)))
+  }, [id])
+  
+  
   return (
      <Container>
         <section className= {styles.hero}>
           <Sidebar />
           <Poster />
         </section>
-        <ProductsList
+        <FilterProductList
           title={singleCategory && singleCategory.name}
-          products={filtered || []}
-          amount={filtered ? filtered.length : 0}
+          products={filtered}
         />
     </Container>
   )

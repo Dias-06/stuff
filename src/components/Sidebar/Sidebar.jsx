@@ -10,7 +10,7 @@ const Sidebar = () => {
         <ul className={styles.list}>
             {list.map((item, index) => index < 5 && (
                 <li key={item.id} className={styles.listItem}>
-                    <Link to={`/categories/:${item.id}`} className={styles.link}>
+                    <Link to={`/category/${item.id}`} className={styles.link}>
                         {item.name}
                     </Link>
                 </li>
