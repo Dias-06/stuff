@@ -94,3 +94,12 @@
 .type{
     font-size: 13px;
 }
+.empty{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+.bottom{
+    margin-top: auto;
+}

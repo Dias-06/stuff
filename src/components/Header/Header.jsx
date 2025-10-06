@@ -9,15 +9,15 @@ import shop from '../../assets/shop.svg'
 import { useState, useEffect } from "react";
 import avatar from '../../assets/avatar.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleForm } from '../../features/user'
+import { selectTotalAmount, toggleForm } from '../../features/user'
 const Header = () =>{
   const {products} = useSelector((state) => state.products);
   const [filterdProducts, setFilteredProducts] = useState([]);
   const [searchValue, setSearchValue] = useState(''); 
   const [values, setValues] = useState({name: 'Guest', avatar: avatar})
   const dispatch = useDispatch()
-  const {currentUser} = useSelector((state) => state.user);
-
+  const {currentUser, favorites} = useSelector((state) => state.user);
+  const totalAmount = useSelector(selectTotalAmount)
   useEffect(() =>{
     if(!currentUser) return;
     setValues(currentUser)
@@ -69,12 +69,19 @@ const Header = () =>{
                   }
             </div>
             <div className={styles.controls}>
-              <NavLink to={'/saved'}>
-                <img src={like} alt="" />
-              </NavLink>
-              <NavLink to={'/cart'}>
-                <img src={shop} alt="" />
-              </NavLink>
+              <div className={styles.cartWrapper}>
+                  <NavLink to={'/saved'}>
+                    <img src={like} alt="" />
+                  </NavLink>
+                  <span className={styles.countCart}>{favorites.length}</span>
+              </div>   
+              <div className={styles.cartWrapper}>
+                <NavLink to={'/cart'}>
+                  <img src={shop} alt="" />
+                </NavLink>
+                <span className={styles.countCart}>{totalAmount}</span>
+              </div>
+              
               
             </div>
         </div>

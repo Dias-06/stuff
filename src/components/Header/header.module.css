@@ -30,6 +30,7 @@
     left: 0;
     right: 0;
     max-height: 300px;
+    z-index: 2;
     background-color: var(--color-black-10);
     overflow-y: hidden;
 }
@@ -41,8 +42,26 @@
     width: 40px;
     height: 40px;
 }
-.controls img:first-child{
-    margin-right: 10px;
+.controls{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+.cartWrapper{
+    position: relative;
+}
+.countCart{
+    position: absolute;
+    display: flex;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--color-purple-20);
+    font-size: 11px;
 }
 .user{
     display: flex;

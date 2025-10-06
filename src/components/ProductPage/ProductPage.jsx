@@ -5,15 +5,17 @@ import Button from '../Button/Button'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import Sidebar from '../Sidebar/Sidebar'
-import { addToCart } from '../../features/user'
+import { addToCart, addToFavorites } from '../../features/user'
 import { relatedProducts } from '../../features/products'
 import ProductsList from '../ProductsList/ProductsList'
 const ProductPage = () => {
     const {id} = useParams()
     
     const { products, related } = useSelector((state) => state.products)
+    const favorites = useSelector((state) => state.user.favorites)
     const singleProduct = products.find(item => item.id == id);
     const [currentImage, setCurrentImage] = useState('');
+    const isFavorite = favorites.find(item => item.id == singleProduct.id)
     const dispatch = useDispatch()
     useEffect(() => {
         if(singleProduct){
@@ -26,7 +28,10 @@ const ProductPage = () => {
     const addItemToCart = () =>{
         dispatch(addToCart(singleProduct))
     }
-    
+    const addItemToFav = () =>{
+        dispatch(addToFavorites(singleProduct))
+        console.log(favorites)
+    }
     if (!singleProduct) {
         return <h2>Товар не найден...</h2>
     }
@@ -53,7 +58,7 @@ const ProductPage = () => {
                     <p className={styles.description}>{singleProduct.description}</p>
                     <div className={styles.buttons}>
                         <Button onClick = {addItemToCart} children={'Add to cart'} />
-                        <Button children={'Add to favorites'} />
+                        <Button style = {isFavorite} onClick={addItemToFav} children={'Add to favorites'} />
                     </div>
                 </div>
             </section>

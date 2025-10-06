@@ -26,7 +26,6 @@ function App() {
         <Route path="/category/:id" element = {<CategoryPage />}/>
         <Route path="/cart" element = {<CartPage />}/>
       </Routes>
-      <Footer />
     </>
     
     
